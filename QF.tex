@@ -1,0 +1,835 @@
+\documentclass[11pt]{report}
+\usepackage{ron}
+\usepackage{mathtools}
+\usepackage{extarrows}
+\usepackage{setspace}
+\usepackage{schemata}
+\usepackage{changepage}
+\DeclareMathOperator*{\germ}{germ}
+\DeclareMathOperator*{\Sh}{Sh}
+\DeclareMathOperator*{\PSh}{PSh}
+\DeclareMathOperator*{\res}{res}
+\DeclareMathOperator*{\ord}{ord}
+\let\oldthebibliography\thebibliography
+\let\endoldthebibliography\endthebibliography
+\renewenvironment{thebibliography}[1]{\begin{oldthebibliography}{#1}\setlength{\itemsep}{0.45em}\setlength{\parskip}{0em}}{\end{oldthebibliography}}
+\newcommand\sch[4]{\Schema{#1}{#2}{\schemabox{#3}}{\schemabox{#4}}}
+\begin{document}\clearpage
+	
+	\title{\Huge \bfseries \textsc{Quantum Foundations}}
+	\maketitle
+	\rontoc
+	\newpage
+	\ronpart{I}{Formalism Part}{}
+		\noindent The path to the construction of a new physical theory is usually a complicated one. In its initial stages, lots of ideas are tried and tested. The surviving ideas are revised, modified, and more clearly defined. These become the postulates of the theory. The purpose of this part is however not to study the historical construction of quantum theory but to give instrumentalist reconstruction of the formal structure of quantum theory. The purpose of reconstruction is to translate primary scientific ideas into a logically impeccable language such that the new presentation is superior concerning clarity and precision. Reconstruction makes the core underlying structure of physical theory clearer and could expose the problems. Many believe that quantum physics is so different from the usual way of thinking that its meaning cannot be communicated directly. People belonging to this group have a `shut up and calculate' attitude towards the subject and they intend to acquire an intuitive feeling for the subject through calculation and solving problems. We attempt, through reconstruction, try to show them that some of the foundations of quantum mechanics can be clarified and the problems can be clearly laid out. We will divide quantum theory into two parts, the semantics part and the evolution part. The semantic part will consist of the physical objects of the theory which in our case are observables and states and their interpretation. The evolution part is about the dynamic processes of the physical theory. This chapter will act as fixing the notation, philosophical setting and bring the reader on the same page. 
+	
+	The presentation here will be closest to G\"unther Ludwig school with some stuff borrowed from quantum logic literature. The `Ludwig school' has the advantage of being compatible with most interpretations if suitably reformulated. See \cite{Ludwig2}-\cite{Busch}, for instrumentalist approach also called operational quantum theory. 
+	\chapter{Objects of Quantum Theory}
+	A physical theory is in some sense to be interpreted from outside in terms of pre-theories not belonging to the theory in question itself. Usually when one tries to formulate quantum theory one starts with a pre-theory such as classical mechanics then `quantizes' the theory. This makes the theory very messy and the underlying physical ideas hidden and unclear. To minimize going to these pre-theories we adopt a purely instrumentalist view of physics. The construction and behavior of instruments will not be of interest to us. Any changes occurring in the instruments during `measurements' will be accepted as objective events. According to this point of view, the fundamental notions of quantum mechanics have to be defined operationally in terms of macroscopic instruments and prescriptions for their application. Quantum mechanics is then interpreted entirely in terms of such instruments and events. These instruments and events are our links to `objective reality'.
+	
+	\section{Effects and Ensembles}\label{section:Semantics1}
+	From this instrumentalist or operational point of view, the notion of `state' can be defined in terms of the preparation procedure. A preparation procedure is characterized by the kind of system it prepares. The other important thing is the existence of a measuring instrument that is capable of undergoing changes upon their interaction. The observable change in the instrument is called an effect in the `Ludwig school'.
+	
+	To simplify the procedure consider instruments that record `hits'. These instruments perform simple `yes-no' measurements. Any measurement can be interpreted as a combination of yes-no measurements. These yes-no instruments can be used to build any general instrument. Suppose we have such an instrument, label its registration procedure by $R$. If the experiment is conducted a lot of times, we get a relative frequency of occurrence of `yes'. To every preparation procedure $\rho$ and registration procedure $R_i$ there exists a probability $\mu(\rho, R_i)$ of occurrence of `yes' associated with the pair.
+	$$(\rho,R_i)\longrightarrow \mu(\rho|R_i).$$
+	The numbers $\mu(\rho|R_i)$ are called operational statistics. Two completely different preparation procedures may give the same probabilities for all experiments $R$. Such preparation procedures must be considered equivalent. Such preparation procedures are called operationally equivalent preparations. A precursor to the notion of a state of the system is an equivalence class of preparations procedures yielding the same result. They are called ensembles. 
+	
+	The basic mathematical structure of ensembles and effects can be understood using purely mathematical reasons, without introducing any new physical law. Denote the class of ensembles by ${S}$ and the class of effects by ${E}$. The maps of interest to us are the following,
+	$${S}\times {E}\xlongrightarrow{\mu}[0,1].$$
+	There may be two experiments that give the same probabilities for every ensemble. Such apparatuses must be considered equivalent. They are called operationally equivalent effects. An effect is the equivalence class of apparatuses yielding the same result. In general, a registration procedure $R$ for an experiment will have outcomes $\{R_i\}$. For an outcome, $R_i$ of the registration procedure $R$, denotes the corresponding equivalence class of measurement procedures by $E_{R_i}$. Each outcome $R_i$ of the registration procedure corresponds to a functional $E_{R_i}$ called the effect of $R_i$ that acts on the ensemble of the system to yield the corresponding probability.
+	$$E_{R_i}:\rho\mapsto E_{R_i}(\rho)=\mu(\rho|R_i).$$
+	Maps of interest to us will be those that assign to each of its outcomes $R_i$ its associated effect $E_{R_i}$. Since each ensemble fixes a probability distribution we have,
+	$$\mu_\rho:R_i\mapsto \mu_\rho(R_i)=\mu(\rho|R_i).$$
+	The above-given map $\mu_\rho$ is determined by the instrument and the registration procedure. Accounting to the fact that preparation procedures can be combined to produce a mixed ensemble, the set of ensembles is taken to be a convex set. Since a mixture of ensembles corresponds to a convex combination of probabilities each functional $E_{R_i}$ preserves the convex structure. Since two preparations giving the same result on every effect represent the same ensemble and two measurement procedures that can't distinguish ensemble represent the same effect, ensembles and effects are mutually separating. A generalized probabilistic theory is an association of a convex state space and effect vectors to a given system, such that the states and effects are uniquely determined by the probabilities they produce. This is known as the principle of tomography. The aim is to obtain a GPT from an operational theory. We are interested in embedding the ensembles inside the vector space of linear functionals on the effects and embed effects inside the vector space of linear functionals on the ensembles. More generally, one takes an operational theory and `quotients' with operational equivalences to obtain a GPT.
+	
+	Denote by $\mathcal{S}$ the set of maps, $f:E\longrightarrow\mathbb{R}$ such that $f(X)=\sum_i \alpha_i \mu(\rho_i |X)$ and denote by $\mathcal{E}$ the set of maps, $g:S\longrightarrow\mathbb{R}$ such that $g(\rho)=\sum_i\beta_i \mu(\rho | R_i)$ where $\rho_i$ and $R_i$ are ensembles and effects respectively and $\alpha_i ,\beta_i\in\mathbb{R}$. Clearly $\mathcal{S}$ and $\mathcal{E}$ are real vector spaces. We can embed ensembles inside $\mathcal{S}$ with the map, 
+	$$\rho\longmapsto \mu_\rho,$$
+	and similarly embed effects inside $\mathcal{E}$ with the map, 
+	$$R_i\longmapsto E_{R_i}.$$
+	The bilinear map $\langle\cdot|\cdot\rangle : \mathcal{S}\times \mathcal{E}\to \mathbb{R}$ which coincides with $\mu$ is then uniquely determined. $\langle \mathcal{S}\:|\: \mathcal{E}\rangle$ becomes a dual pair. The completions of $\mathcal{S}$ and $\mathcal{E}$ will provide us the necessary mathematical structure for ensembles and effects. We will denote $\langle \cdot |\cdot \rangle$ by $\mu$. 
+	
+	A registration procedure $E_R$ is an effect valued function that assigns to each possible outcome $R_i$ its effect $E_{R_i}$, 
+	$$E_R:\:R_i\longmapsto E_{R_i}.$$
+	It's important to find a mathematical structure that describes the registration procedure $E_R$ beyond this basic vector space structure. The purpose of this section is to study the mathematical representatives of effects and ensembles in quantum formalism.
+	
+	To get the mathematical representatives of physical observables one has to study the logical relations of a set of propositions that are considered meaningful and empirically verifiable according to the theory that describes the physical system. The logic of a physical system will mean the algebraic structure that represents the equivalence classes of the elementary sentences.  To simplify the procedure one initially reduces the elementary sentences of the system to simple `yes-no' questions called propositions. For the development of any mathematical theory, the first step is the idealization of the registrations. Here we are satisfied with the usage of real numbers to label the outcomes. 
+	
+	The concept of observable which is one of the main physical objects of quantum theory can be obtained from a certain idealization of the registration procedure. Consider a registration procedure $E_A$ whose outcomes $\{A_i\}$ are measured using the same equipment. The events of such a registration procedure should form a Boolean ring. The aim is to arrive at the notion of observable from these special kinds of registration procedures. What we seek are maps from Boolean rings to the effects. A mapping $A$ of a Boolean ring $\Sigma$ into an ordered interval $[0,\epsilon]$ of a vector space, such that, $A(\mathbb{I})=\epsilon$ where $\mathbb{I}$ is unit of $\Sigma$ and 
+	$$A(\sigma_1 \vee\sigma_2)=A(\sigma_1)+A(\sigma_2)\:\:\text{ for all } \:\sigma_1\wedge \sigma_2=0,$$
+	is called an additive measure on $\Sigma$. A set $F\subset \mathcal{E}$ is called a set of coexistent effects if there exists a Boolean ring $\Sigma_A$ with an additive measure $A:\Sigma_A\xrightarrow{}\mathcal{E}$ such that $F\subset A\Sigma_A$. 
+	
+	An observable is a special kind of registration procedure where the outcomes form a complete Boolean ring. An observable is a pair $(\Sigma_A, A)$, where $\Sigma_A$ is a Boolean ring and $A$ is an additive measure, 
+	\begin{align*}
+		A:\:\Sigma_A\to\mathcal{E}.
+	\end{align*}
+	We will denote the observable by the map $A$. The complete Boolean lattice structure of $\Sigma_A$ is the idealization of the registration procedure. Observables are effect-valued functions where outcomes have a Boolean lattice structure. 
+	
+	Suppose we have two observables $A$ and $B$ and there exists a homomorphism $h$ of the Boolean ring $\Sigma_A$ into the Boolean ring $\Sigma_B$
+	%\[ \begin{tikzcd}
+		%\Sigma_A \arrow{r}{h} \arrow[swap]{rd}{A} &  \Sigma_B \arrow{d}{B} \\%
+		%&\mathcal{E}
+		%\end{tikzcd}
+		%\]
+		then intuitively the observable $B$ says about more possible events than $A$ since the measurements of the observable $A$ is contained in the observable $B$. Two observables are equivalent if the homomorphism $h$ is an isomorphism. Two observables $A$ and $B$ are said to coexist if there exists an observable $AB$ and two homomorphisms $h$ and $i$ such that $h: \Sigma_A\to \Sigma_{AB}$ and $i:\Sigma_B\to \Sigma_{AB}$. 
+		%The following diagram holds.
+		%\[ \begin{tikzcd}
+			%\Sigma_A \arrow{r}{h} \arrow[swap]{rd}{A} & \Sigma _{AB}\arrow{d}{AB}\arrow[leftarrow]{r}{i}  &  \Sigma_B \arrow{ld}{B} \\%
+			%&\mathcal{E}
+			%\end{tikzcd}
+			%\]
+			Denote by $\Xi$ the effects that coexist with every other effect. Two observables $A$ and $B$ are mutually complementary if every coexistent effect is in $\Xi$. If two effects $E_{A_i}\in A$ and $E_{B_j}\in B$ are coexistent then at least one of them is in $\Xi$. The existence of such observables is a feature of quantum mechanics that wasn't the case in classical mechanics. %We will skip here the notion of preparator and the interested reader should read Ludwig's original work \cite{Ludwig2},\cite{Ludwig3}.
+			
+			Similar to effects we can study idealizations of ensembles. Since effects and ensembles are closely related objects we would see similar conditions on the notion of state coming from observables. 
+			The state should provide for each observable a probability distribution. In the formulations of quantum mechanics, the question of whether it is possible to make joint measurements of pairs of observables is important. It's this question that leads to all the subtleties of quantum mechanics. The question is regarding the possibility of joint preparation. This helps us separate the question about the possibility of making joint preparations from the problem of registration. We are interested in decomposing the ensemble and studying the relation between different decompositions. Maps of interest to us are of the form, 
+			$$w: \:\Sigma_A\to \mathcal{S},$$
+			such that $w(1)= \mu_\rho$. The structure of the observable $A$ would be contained in the Boolean lattice $\Sigma_A$. The condition $w(1)=\mu_\rho$ contains the structure of the ensemble $\mu_\rho$. These maps are called preparators in Ludwig's approach. A preparator of the ensemble $\mu_\rho$ is a map $w_i:\Sigma _i\to \mathcal{S}$ such that $w_i(1)=\mu_\rho$. Preparators represent the information the state contains about an observable. A preparator $w_i$ of the ensemble $\mu_\rho$ is more comprehensive than the preparator $\omega_j$ if there exists a homomorphism $h:\Sigma_j\to\Sigma_i$. $w_i$ and $w_j$ coexist if there is a preparator $w$ which is more comprehensive than both. Using a preparator $w:\Sigma\to \mathcal{S}$ of $\mu_\rho$, new preparators can be obtained as follows: Let $[0,\epsilon]\subset  \Sigma$ then, 
+			$$w_\epsilon:[0,\epsilon]\to \mathcal{S},$$
+			where $[1/\mu(w(\epsilon),1)]w:=w_\epsilon$ is a preparator of the ensemble $[1/\mu(w(\epsilon),1)]w(\epsilon):=\mu_{\rho_\epsilon}$. We will call this the preparator of $[0,\epsilon]$. Suppose we have two preparators, $w_i$ and $w_j$, we call them mutually exclusive if there doesn't exist sections $[0,\epsilon_i]\subset \Sigma_i$ and $[0,\epsilon_j]\subset \Sigma_j$ such that $\mu_{\rho_{\epsilon_i}}=\mu_{\rho_{\epsilon_j}}$ and the canonical preparators of $[0,\epsilon_i]$ and $[0,\epsilon_j]$ coexist. Two preparators $w_i$ and $w_j$ of $\mu_\rho$ are complementary if whenever there is a homomorphism $h :\Sigma_i|_h\to\Sigma_j$ the corresponding new restricted preparators are mutually exclusive. These properties allow us to extract the mathematical properties of ensembles. 
+			
+			Suppose $A:\Sigma_A\to \mathcal{E}$ is an observable then a state $\mu_\rho$  gives us a map,
+			$$\mu^A_\rho:\:\Sigma_A\to [0,1],$$ 
+			such that $\mu^A_\rho(0)=0$, $\mu^A_\rho(E^\perp)=1-\mu^A_\rho(E)$ and whenever $E_i$ are mutually orthogonal,
+			$$\mu^A_\rho(\vee_i E_i)=\sum_i\mu^A_\rho(E_i).$$
+			For all practical purposes, we will assume the measurement scale is separable. This assumption gives us all the nice properties needed to do mathematics.
+			
+			It is important to note that preparation and registration procedures producing the same ensembles and effects are not always equal, in fact, the notion of equality won't even make sense. The transition from preparation and registration procedures to ensembles and effects is a transition from the real world to the abstract mathematical world. It should be noted that it doesn't make sense to `prepare' closed systems, one has to assume such systems start off in some state a priori. 
+			
+			\section{Observables and States}
+			By the end of the nineteenth century, it was clear that elementary processes obeyed some `discontinuous' laws. There existed no mathematical formalism of quantum theory that would provide a unified structure. Heisenberg's solution to this problem was to use linear operators as a starting point. What von Neumann took away from Heisenberg's idea was that the mathematical objects needed for the description of observables is found in Hilbert spaces and operator algebras acting on the Hilbert spaces.
+			\subsection{{Hilbert Spaces and Operators}}
+			The space of functions\footnote{square integrable/square summable functions} on both discrete and continuous spaces have the same Hilbert space structure, see  \cite{vonNeumann} for a discussion.\footnote{I have not discussed the motivation here as I felt it will be beneficial for the reader to go through von Neumann's textbook instead reading a copy of his discussion of the subject here} The coexistence of discrete and continuous observables is possible. The necessary structure for the abstract mathematical framework of quantum theory is found in Hilbert spaces and operator algebras.
+			
+			Let $(\mathcal{H},\langle \cdot|\cdot\rangle)$ be a complex Hilbert space. $\mathcal{P}(\mathcal{H})$ denote the set of all closed subspaces. Denote $\mathcal{H}_i\leq \mathcal{H}_j$ if and only if $\mathcal{H}_i \subseteq \mathcal{H}_j$. The relation $\leq $ is a partial ordering in $\mathcal{P}(\mathcal{H})$. Join $\vee$ of a family $\{\mathcal{H}_i\}_{i\in I}$ is the linear span of the family denoted $\vee_i \mathcal{H}_i$. Meet $\wedge$ of a family $\{\mathcal{H}_i\}_{i\in I}$ is the intersection of the family, denoted $\wedge_i \mathcal{H}_i$.  The orthocomplement of $\mathcal{H}_i$ in $\mathcal{P}(\mathcal{H})$ denoted by $\mathcal{H}_i^\perp$ is the closed subspace of vectors $\varphi\in\mathcal{H}$ such that $\langle\varphi|\mathcal{H}_i\rangle =0$. Since there is a bijection between closed subspaces of a Hilbert space and projection operators acting on the Hilbert space, the set of all projection operators on the Hilbert space inherits a lattice structure from the lattice of closed subspaces. Abusing notation, we will denote the projection operators on $\mathcal{H}$ by $\mathcal{P}(\mathcal{H})$. The orthocomplement of the projection $E$ is the projection onto the orthogonal complement of the subspace corresponding to the projection operator $E$ and is denoted by $E^\perp$. The lattice structure of $\mathcal{P}(\mathcal{H})$ coming from the above relations gives us the necessary structure to get the mathematical representatives of physical observables. The non-Boolean lattice $\mathcal{P}(\mathcal{H})$ of projections should act as the space of effects.
+			$$\mathcal{E}
+			\equiv \mathcal{P}(\mathcal{H})$$
+			In the quantum logic literature the central objects that model events are the so called orthomodular lattices. Though these can be studied abstractly, I will not do so in this document as I don't find that to be particularly helpful.
+			
+			For a family of projection operators to represent an observable, we should make sure that the family forms a Boolean algebra. A quantum mechanical observable is an additive measure of the form,
+			$$E_A:\: \Sigma_A\to \mathcal{P}(\mathcal{H}),$$
+			a projection valued function. Usually in physical experiments, the statements that can be made are of the type `the value of the observable lies in some set $\epsilon_i$ of real numbers'.  To accommodate the fact that the measurement scale is composed of real numbers, we identify $\Sigma_A$ with the Borel sets of $\mathbb{R}$. {It should be noted that the observables need not be real, the physics community has historically decided to use real numbers to label the outcomes of experiments. Any other labeling should work equally well.} D\"oring and Isham have done an interesting generalization of this scheme \cite{doring}. Their idea seems to be to replace the Boolean structure in $\Sigma_A$ with a more general propositional language system and question if values of the system should be more general than `real'. Though we find this to be a beautiful generalization for the future of quantum theory we don't think this is the part needing fixing for solving the foundational problems in quantum theory. We believe we can get a lot of work done with real measurement scales themselves. %Perhaps their approach will give more interesting structures to be studied in the future but for the purpose of quantum gravity, we don't think it's necessary.
+			
+			The quantum observables are analogous to classical random variables, namely, that of a projection valued measure,
+			$$E_A: \:\mathcal{B}(\mathbb{R})\to \mathcal{P}(\mathcal{H}).$$
+			This generalizes the classical case, for which mathematical representatives were the measure space $(\Omega,\Sigma(\Omega),\mu)$, where the $\sigma$-algebra, $\Sigma(\Omega)$ is a class of subsets of the set $\Omega$ which correspond to events and $\mu$ is a probability measure. A classical random variable is defined as a map $X: \Omega\to \mathbb{R}$. The map doing the work in assigning necessary probabilities is its inverse, considered as a set map,
+			$$X^{-1}: \:\mathcal{B}(\mathbb{R})\to \Sigma(\Omega).$$
+			A spectral measure is a projection operator-valued function $E$ defined on the sets of $\mathbb{R}$ such that, $E(\mathbb{R})=I$ and $E(\sqcup_i \epsilon_i)=\sum_i E(\epsilon_i)$, where $\epsilon_i$s are disjoint Borel sets of $\mathbb{R}$. The spectral theorem says that every self-adjoint operator $A$ corresponds to a spectral measure $E_A$ such that,
+			$$A=\int \lambda \:dE_A(\lambda),$$
+			and conversely, every spectral measure corresponds to a self-adjoint operator. In the finite-dimensional case this reduces to $A=\sum_i\lambda_i E_i$ where $E_i$s are projections onto eigenspaces of $\lambda_i$s. Observables in quantum theories are represented by self-adjoint operators on some complex Hilbert space and the orthogonal projections of the self-adjoint operator correspond to the events. The values of the observable are the spectrum of the operator. The characteristic feature of quantum theory is that the space of effects is a non-commutative entity.
+			
+			The mathematical representatives of the physical states for the quantum case are the maps, $\omega:\mathcal{P}(\mathcal{H})\to [0,1]$, such that $\omega(0)=0$, $\omega(E^\perp)=1-\omega(E)$ and $\omega(\vee_i E_i)=\sum_i \omega(E_i)$ for mutually orthogonal $E_i$. For an observable with the associated self-adjoint operator $A$, the map 
+			$$\mu^A=\omega\circ  E_A:\:\Sigma_A\to [0,1],$$ 
+			determines a classical probability measure. The existence and classification of such non-commutative probability measures on Hilbert spaces is given by the Gleason's theorem.
+			
+			\vspace{.5em}
+			\begin{theorem}
+				{\bfseries{\textsc{(Gleason) }}} If the complex separable Hilbert spaces $\mathcal{H}$ of dimension greater than 2, then every $\omega$ is of the form
+				$$\omega(E)=Tr(\rho E).$$
+				where $\rho$ is a positive semidefinite self-adjoint operator of unit trace or density matrix. Conversely, every density matrix determines a state as defined in the above formula.
+			\end{theorem}
+			\vspace{.5em}
+			
+			\begin{center}
+				{\bfseries \textsc{Sketch of Proof}}
+			\end{center}
+			Gleason's proof of the theorem is quite complicated. He starts by defining what he calls frame functions of weight $W$ on separable Hilbert space $\Hcal$. A frame function $f$ is a real valued functions on unit sphere of $\Hcal$ such that for any orthonormal basis, $\{|\varkappa_i\rangle\}_{i\in\NN}$, $\sum_if(|\varkappa_i\rangle)=W.$
+			A frame function is regular if there exists a self-adjoint operator $\rho$ such that for every unit vector $|\varkappa\rangle\in\Hcal$,
+			$$f(|\varkappa\rangle)=\langle \varkappa |\rho\varkappa\rangle$$ 
+			Gleason proves that every frame function on two dimensional Hilbert spaces is regular. For Hilbert spaces of dimension greater than three the result holds for every two dimensional subspaces. Then he proves the continuity of frame functions. Every non-negative frame function on a Hilbert space of dimension greater than three is regular. Much of the hard work lies in this part. I will cheat and skip this hard part. A brave reader can go read Gleason's original paper \cite{Gleason} or H Granstr\"om's master's thesis \cite{Helena} on Gleason's theorem.
+			
+			Suppose $\omega:\Pcal(\Hcal)\to [0,1]$ be a function as described above. Let $E_\varphi$ be the projection onto the subspace spanned by the unit vector $\varphi$. $f(\varphi)=\omega(E_\varphi)$ defines a non-negative frame function. By regularity there exists a self-adjoint operator $\rho$ such that,
+			$$f(\varphi)=\langle \varphi |\rho\varphi\rangle.$$
+			Since this holds for all unit vectors, $\rho$ is positive semi-definite. Denote by $E_\Hcal$ the projection onto the whole Hlibert space i.e., the identity operator. Given an orthonormal basis $\{|\varphi_i\rangle\}_{i\in\NN}$ of $\Hcal$ we have,
+			$$\omega (E_\Hcal)=\sum_i\omega(E_{|\varphi_i\rangle})=\sum_i \langle \varphi_i|\rho \varphi_i\rangle =Tr(\rho).$$
+			For any subspace $\Kcal\subset \Hcal$ denote by $E_\Kcal$ the corresponding projection operator. Take an orthonormal basis $\{\varkappa_i\}_{i\in I}$ for $\Kcal$ and extend it to $\Hcal$. Then we can write,
+			$$\omega (E_\Kcal)=\sum_{i\in I} \omega(\varkappa_i)=\sum_{i\in I} \langle E_\Kcal\varkappa_i|\rho \varkappa_i\rangle=Tr (\rho E_{\Kcal}).$$
+			So we have for all projection operators $E\in \Pcal(\Hcal)$, we have,
+			$$\omega(E)=Tr(\rho E).$$
+			\qed
+			\vspace{2em}
+			
+			\noindent The proof of Gleason's theorem is unimportant. The proof requires patience to read through and high amount of problem solving skill, and insight to come up with. But we don't need those to understand what it is saying. We probably will never need the methods used in the proof of Gleason's theorem for understanding quantum mechanics. 
+			
+			More general quantum experiments correspond to positive operator-valued measures. The effects $E$ are given by positive operators, $O\leq E\leq I$ as probabilities are positive quantities. Since these should sum to 1 for an experiment, it will be a resolution of identity $\sum_i E_{A_i}=I$, where $E_{A_i}$s are effects. The resolution of identity $E_A:A_i\to E_{A_i}$ is called positive operator-valued measure (POVM). General quantum mechanical experiments are represented by pairs $(\rho, E_A)$. For Gleason's theorem in this setting see \cite{Busch3}. 
+			
+			We call $\omega$ a Gleason measure. Every state corresponds to a positive semidefinite self-adjoint operator of unit trace. We denote the set of all states on the Hilbert space $\mathcal{H}$ by $\mathcal{S}(\mathcal{H})$. The mathematical representatives of ensembles are states.
+			$$\mathcal{S}\equiv \mathcal{S}(\mathcal{H})$$
+			This is a convex set. The extreme points\footnote{This requires Krein-Milman theorem which uses Zorn's lemma for its proof} of this convex set are called pure states, pure states are of the form, $\rho=\rho^2$ and corresponds to some vector $|\varphi\rangle$ in the Hilbert space $\Hcal$ and $\rho$ is the projection onto the subspace generated by $|\varphi\rangle$. Such a state is denoted by $|\varphi\rangle\langle \varphi|$.
+			
+			For an observable with an associated self-adjoint operator $A$ the probability that the observable takes a value lying in the interval $\epsilon$ is given by, 
+			$$\mu^A_\rho(\epsilon)=Tr(\rho E_A(\epsilon)).$$
+			The expectation value of the observable will be,
+			$$\langle A\rangle =\int \lambda\: d\mu^A_\rho(\lambda)=Tr(\rho A).$$
+			All the Hilbert spaces will be assumed to be separable, complex. 
+			\subsection{{Tensor Product}}
+			Given a finite number of Hilbert spaces $\mathcal{H}_i$, for $n$ quantum systems, the problem is to describe the Hilbert space appropriate to the `product' system.
+			Let $\mathcal{I}$ denote a possible solution to this problem: that is the states of $\mathcal{I}$ are supposed to be states for the product system. Then, at the very least, some of the preparation procedures for the product system should be obtainable by arranging in some manner the preparation procedures on the individual systems. We should be able to construct a certain function,
+			$$e:\:\mathcal{H}_1\times\cdots\times \mathcal{H}_n \to \mathcal{I}.$$
+			The interpretation of $e$ is that, it introduces a component from each individual system into the product system. Accounting to the superpositions, the product system should inherit the structure from the components. The map $e$ must be linear for each component. The universal solution $\mathcal{H}$ to this problem is the algebraic tensor product. It's the vector space $\mathcal{H}$ together with an $n$-linear map $t$ such that, for any $n$-linear map $e:\mathcal{H}_1\times\cdots\times \mathcal{H}_n\to\mathcal{I}$, there exists a unique linear map $\tilde{e}:\mathcal{H}\to\mathcal{I}$,
+			
+			\[ \begin{tikzcd}
+				\mathcal{H}_1\times\cdots\times \mathcal{H}_n \arrow{r}{t} \arrow[swap]{rd}{e} & \mathcal{H} \arrow{d}{\exists !\:\:\tilde{e}} \\%
+				&\mathcal{I}
+			\end{tikzcd}
+			\]
+			This vector space inherits a canonical inner product from the component Hilbert spaces. The completion of $\mathcal{H}=\otimes_{i\in I}\mathcal{H}_i$ under the canonical inner product will serve as the Hilbert spaces for product systems.
+			
+			It's important to note that when we are given a closed system, the notion of preparation of state doesn't make sense. So in such cases, we are stuck with states given by nature.
+			
+
+\section{Evolution of Quantum Systems}
+Suppose a system prepared in a state $\rho$ undergoes a process. The original preparation procedure along with the process can be considered a new preparation procedure. The equivalence class of the new preparation procedure will define the new quantum state after the process. This state depends on the original preparation procedure and the process. Each process corresponds to a linear map,
+$$\alpha:\mathcal{B}\to\mathcal{A}.$$
+The algebras of observables $\mathcal{A}$ and $\mathcal{B}$ represent the input and output systems respectively. To an initial state $\rho$ of $\mathcal{A}$ the channel associates the output state $\rho\circ \alpha$ of $\mathcal{B}$. 
+
+If density matrices are used to describe quantum states in quantum mechanics, then a process must be some operation that sends density matrices to density matrices. So for finite-dimensional state spaces, a process should be a linear map of vector spaces of matrices. It preserves the trace of matrices and takes hermitian matrices with non-negative eigenvalues to hermitian matrices with non-negative eigenvalues. It must take positive operators to positive operators. A map is called positive if it takes positive operators to positive operators. Suppose the process acts only on some part of the system then it must still be a process on the total system. The map corresponding to a process should be positive for the bigger system as well. Such maps are called completely positive. A general quantum process corresponds to a completely positive unital mapping.
+
+%We can also call physical processes observations. An observation intuitively should mean noting the change in the system. Every process that induces a change in the state of the system can be called an observation. Every observation corresponds to a completely positive unital mapping. We like the word observation more than process. We will use it in the future.
+
+\subsection{Quantum Measurement}\label{section:measurement}
+In quantum theory, the description of the system requires two physical objects. The first being the state of the system which contains the information known about the system. Second, the observables, which are objects the information is about. Bayes' theorem says that additional information about a system will alter the probabilities of possible outcomes. The notion of information is closely related to the notion of probability. Probability gives one way to describe information about the events. We are interested in quantifying the amount of information contained in a state relative to another state. 
+
+The relative entropy of two states $\rho$ and $\sigma$ is the informational divergence of $\rho$ from $\sigma$. Suppose the state $\sigma$ contains information only about a subsystem $\mathcal{B}$ of $\mathcal{A}$ and $E$ is a projection of norm one of $\mathcal{A}$ onto $\mathcal{B}$ then the state $\sigma$ should satisfy $\sigma\circ E= \sigma$.  In such a case the informational divergence should have two components. First component is the divergence of $\rho$ from $\sigma$ on the subalgebra $\mathcal{B}$ which is the divergence between the states $\rho|_\mathcal{B}$ and $ \sigma|_\mathcal{B}$. The other component is the remaining information $\rho$ has and this will be the divergence between the states $\rho$ and $ \rho\circ E$. If $R(\cdot\:,\cdot)$ is such a function then,
+$$R(\rho, \sigma)= R(\rho|_\mathcal{B}, \sigma|_\mathcal{B})+R(\rho, \rho\circ E).$$
+Any automorphism $\alpha$ of the algebra $\mathcal{A}$ should change the information contained in the two states similarly hence the information divergence should be invariant under automorphisms of the algebra,
+$$R(\rho, \sigma)= R(\rho\circ \alpha, \sigma\circ \alpha).$$
+The informational divergence of a state with respect to itself should be zero $R(\rho, \rho)=0.$ If $R(\cdot\:,\cdot)$ is a real-valued functional satisfying the above conditions then there exists a constant $c\in \mathbb{R}$ such that,
+$$R(\rho, \sigma)=c\: \text{Tr}\left( \rho\:(\log \rho-\log \sigma)\right).$$
+The relative entropy of the state $\rho$ with respect to $\sigma$ is defined as,
+$$J(\rho,\sigma)=\text{Tr}\left( \rho\:(\log \rho-\log \sigma)\right).$$
+In the classical case, the Bayes' rule has been shown to be a special case of the constrained maximization of relative entropy \cite{Williams}. The quantum version of this result is obtained in \cite{Kostecki1}. We will state the result here. 
+
+Suppose an observable $A$ has been subjected to measurement. For simplicity we consider the observable to be a discrete observable. Let $A$ be a discrete observable with effects given by the set $\{A_i\}_{i\in I}$ and the corresponding projection operators $\{E_{A_i}\}_{i\in I}$. If the quantum state of the system after the measurement is $\sigma$, it carries information that has to be compatible with the possibility of measuring all eigenvalues of $A$ precisely. Such a situation is given by the condition $[\sigma, A] = 0$. Suppose the result of the measurement is $A_k$ then the probability of measuring $A_k$ again should be $Tr(E_{A_k}\sigma)=1$. Repeated measurements add no new information. The set of all such states such that $Tr(E_{A_k}\sigma)=1$ is a convex set. Let $p=\{p_i\}_{i\in I}$ such that $\sum_ip_i=1$. The set, 
+$$\mathcal{S}_p=\{\sigma\in \mathcal{S}(\mathcal{H})\:\:|\:\:[E_{A_i},\sigma]=0,\:Tr(\sigma E_{A_i})=p_i\},$$
+encodes the data that the measurement outcome $A_i$ corresponding to the projection $E_{A_i}$ occurs with probability $p_i$. The commutation condition says that they posses a common eigenbasis and also means that $[\sigma, A]=0$.
+
+\begin{theorem}
+	{\bfseries{\textsc{(Hellmann-Kami\'nski-Kostecki)}}}
+	$$\arginf_{\sigma\in \mathcal{S}_p}\{J(\rho,\sigma)\}=\sum_{i}p_i {E_{A_i}\rho E_{A_i}}/{Tr(E_{A_i}\rho E_{A_i})}.\hfill \qed$$
+\end{theorem}
+
+The strong collapse or the L\"uders-von Neumann rule of collapse is a limiting case of the above projection with all $p_i$ going to zero except one. By taking the limit $p_i\to 0$ for $i\neq j$ we get the L\"uders-von Neumann's rule of collapse,
+$$\rho\to {{E_{A_j}\rho E_{A_j}}}/{{Tr(E_{A_j}\rho E_{A_j})}}.$$
+This amounts to selecting the quantum state that is least distinguishable from the original state among all the states that satisfy the constraint. 
+\begin{center}
+	{\large \bfseries\textsc{Sketch of Proof}}
+\end{center}
+Given a convex subset $\Vcal$ of a finite dimensional topological vector space and $f:\Vcal\to \RR$ is a convex function then $\sigma$ is a global minimum of the function $f$ on $\Vcal$ if and only if all directional derivatives of $f$ at $\sigma$ are non negative. 
+
+In our case, $D(\cdot,\cdot)=-J(\cdot,\cdot)$ is a jointly convex function. $D(\rho,\cdot)=-J(\rho,\cdot)$ is a convex function on the state space. Now the problem is a minimization of a convex function. $\Vcal=\Scal_p\subset \Scal(\Hcal)$. Every element of $\Scal_p$ can be written as follows,
+$$\sigma=U\Lambda U^*,$$
+where $\Lambda$ is a diagonal matrix with positive entries and trace $1$ and $U$ is a unitary. Since $[\sigma,P_i]=0$ for every $\sigma\in\Scal_p$. Now the idea is to parametrise this and optimise it. 
+\\\qed
+
+\vspace{3em}
+For proof and generalization of the result to the algebraic case, the interested reader should read the original papers \cite{Kostecki1},\cite{Kostecki3} and the references therein. In general measurement channels are given by positive operator-valued measures, where for a measure space, $(\Omega,\Sigma(\Omega))$, and $\epsilon\in\Sigma(\Omega)$, $E(\epsilon)$ is a positive operator, $E(\Omega)=1$ and for pairwise disjoint $\epsilon_i$,
+$\sum_i E(\epsilon_i)=E(\vee_i \epsilon_i).$
+It should, however, be noted that the L\"uders-von Neumann rule is about calibrating with the experimental result and has no predictivity. We will abuse the notation and denote an event characterized by the effect $E_{A_i}$ by $E_{A_i}$ only.
+\label{section:Collapse}
+\vspace{1em}
+\begin{postulate}
+	{\bfseries{\textsc{(L\"uders-von Neumann Collapse)}}} If an observable $A$, with values $A_i$ with corresponding projections $E_{A_i}$, is measured on the system in a state $\rho$, then the state transforms to,
+	$$E_{A_i}\rho E_{A_i}/Tr(E_{A_i}\rho E_{A_i}),$$
+	on the condition that the result $A_i$ was obtained.
+\end{postulate}
+\vspace{1em}
+
+The advantage of this approach to arriving at the L\"uders-von Neumann rule is that the starting point is information theoretic and can be formulated in case of GPTs with suitable available structure.
+
+\subsection{Unitary Evolution}
+Here we give a brief review of the unitary evolution. The purpose of this subsection is to remind ourselves why unitary evolution is used in quantum theory. When it comes to time evolution, the quantum theory continues on with the received view. The symmetries of classical theories are implemented on objects of quantum theory. 
+
+The simplest structure a symmetric map should preserve is the convexity of the space of states, physically corresponding to the fact that a state arises from mixing states with certain statistical weights. Symmetry operations may modify the constituent states but do not change the weights. A bijection $\alpha:\mathcal{S}(\mathcal{H})\to \mathcal{S}(\mathcal{H})$ is a symmetry if it preserves the convex structure of $\mathcal{S}(\mathcal{H})$. For $p_i\in[0,1]$ and $\sum_i p_i=1$,
+$$\alpha(\textstyle\sum_i p_i \rho_i)=\textstyle\sum_i p_i \alpha(\rho_i).$$
+Such a map is called a Kadison automorphism. 
+
+\vspace{1em}
+\begin{theorem}
+	{\bfseries\textsc{(Kadison-Wigner)}} If a map $\alpha$ is a Kadison automorphism, then Kadison-Wigner theorem says $\alpha$ is of the form,
+	$$\alpha(\rho)=U\rho \:U^{-1},$$
+	where $U$ is unitary or antiunitary and is determined up to phase. \qed
+\end{theorem}
+\vspace{1em}
+
+For a proof see, \cite{Landsman}. A unitary operator is a map $U$ such that $\langle Ux, Uy \rangle = \langle x, y \rangle$ and an antiunitary operator is a map $U$ such that $\langle Ux, Uy \rangle = \overline{\langle x, y \rangle}$ where $\langle\cdot,\cdot\rangle$ is the inner product on the Hilbert space. To implement the symmetries of the system, the symmetries must be represented in terms of Kadison automorphisms. We seek maps from some group to the set of Kadison automorphisms. Whether a specific transformation is unitary or antiunitary depends on its physical nature. Transformations that belong to a continuous group, such as translations and rotations, can only be unitary because in that case any finite transformation can be generated by a sequence of infinitesimal steps. Let $\mathcal{G}$ be the group of symmetries of the system, then to each $g\in\mathcal{G}$ there should correspond a Kadison automorphism,
+$$\alpha:\:g\mapsto \alpha_g.$$
+
+We get a unitary or antiunitary representative $U(g)$ to each element $g\in\mathcal{G}$. For now we will assume $U(g)$ to be unitary. Given $g,h\in \mathcal{G}$ we know that,
+$$\alpha_g\alpha_h=\alpha_{gh}.$$
+For compatible representative $U$ we have, 
+$$ U(g)U(h)=\lambda (g,h)U(gh),$$
+where $\lambda (g,h)$ is a phase factor. A map $U:g \mapsto U(g)$ satisfying the above relation is called a projective unitary representation. $\lambda (g,h)$s are called multipliers. For $g=e$ we get,
+$$U(e)=\lambda(e,e)I.$$
+We get some conditions on the multipliers $\lambda (g,h)$. Applying several times to $f,g,h$ we get,
+$$\lambda (f,g)\lambda (fg,h)=\lambda (g,h)\lambda (f,gh).$$
+We also get,
+$$\lambda(e,g)=\lambda(g,e)=\lambda(e,e).$$
+A projective unitary representation with $\lambda(e,g)=\lambda(g,e)=\lambda(e,e)=1$ for every $g\in\mathcal{G}$ is said to be normalized. A map $g\mapsto U(g)$ is called a unitary representation of $\mathcal{G}$ on $\mathcal{H}$ if $U(e)=I$ and satisfies,
+$$ U(g)U(h)=U(gh).$$
+Unitary representations are usually much easier to work with. A theorem of Bargmann says for some groups with nicer properties (connected and simply connected) it's possible to get a unitary representation. One can always consider the universal covering group and get a unitary representation of that anyway.
+
+Given a self-adjoint operator $A$, one can construct a family of unitary operators, $U(t)=e^{-itA}$. Stone's theorem says the opposite is also true. If $t\mapsto U(t)$ is a strongly continuous one-parameter unitary group in the complex Hilbert space $\mathcal{H}$, there exists a unique self-adjoint operator $A$ called the generator of the group such that, 
+$$U(t)=e^{-itA}.$$
+We can, therefore, by Stone's theorem, associate with every one-parameter subgroup of $\mathcal{G}$ a unique self-adjoint operator $A_i$. The Lie algebra of the group $\mathcal{G}$ is represented by the self-adjoint operators $A_i$. From the Lie algebra of the group of symmetries, we can obtain the unitary representatives with a factor of $-i$. If the Lie algebra has the basic structure equation, $[a_i,a_j]=\sum c_{ij}^m a_m,$ then the self-adjoint operators $A_i$ corresponding to $a_i$ satisfy the commutator relations, $i[A_i,A_j]=\sum c_{ij}^m A_m.$
+
+We get the Schr\"odinger equation by implementing Galilean symmetries. When the symmetries are taken to be the Galilean group, the time evolution is generated by the Hamiltonian of the system and corresponds to the time translation symmetry of the system.
+$$\rho\:\mapsto e^{-itH}\rho \:e^{itH}.$$
+This is the Schr\"odinger equation.
+\label{section:Schrodinger}
+\vspace{1em}
+\begin{postulate}
+	{\bfseries{\textsc{(Schr\"odinger)}}} Time translation is given by, $\rho\mapsto e^{-itH}\rho e^{itH}.$
+\end{postulate}
+\vspace{1em}
+
+This notion of evolution is a direct copy-paste of the classical laws formulated for quantum objects. 
+
+\section{The Measurement Problem}\label{section:Problem}
+A physical theory is said to be universal if its domain of application is everything. Classical physics was supposed to be such a universal theory but the experiments of the twentieth century showed it to be not the case. Quantum theory was created as a replacement. Quantum mechanics is supposed to be universal. It is supposed to explain all the observed phenomenon and all non-quantum theories should be approximation theories relative to quantum mechanics. Although the successes of quantum theory may make the idea of the universality of quantum mechanics more compelling, it is important to note that these successes are not proof of the validity of the fundamental principles of the theory. Even if the adherents of the universality of quantum mechanics avoid the problem of elaborating the limits of quantum mechanics, they necessarily introduce a new difficulty, ``How do we obtain a `determination' of measurement results?''. This is known as the measurement problem. Here again, we find a variety of different approaches, which range from attempts to show that probability theory itself gives the valid determination to the introduction of consciousness of the observer or the so-called `many-worlds' interpretation of quantum mechanics. 
+
+We will denote the objects of quantum theory together with the unitary notion of evolution by $\mathcal{QM}_U$ and the objects of quantum theory together with the measurement rule by $\mathcal{QM}_M$. So, what we have are two theories for the same domain of facts, one given by $\mathcal{QM}_M$ and other given by $\mathcal{QM}_U$. From the point of view of $\mathcal{QM}_U$, the representation of the Galilean group (or some other group depending on the situation) determines the laws. We shall only examine the condition for the physically important time translation. From this point of view, a description means that for every system there is a corresponding trajectory $\rho(t)$ of the state. What we expect is a reasonable relation between $\mathcal{QM}_M$ and $\mathcal{QM}_U$. There must exist in some sense, an equivalence $N$ between $\mathcal{QM}_M$ and $\mathcal{QM}_U$. 
+$$\mathcal{QM}_M\xlongleftrightarrow{N?}\mathcal{QM}_U.$$
+According to $\mathcal{QM}_U$, there exists, a measurement of the state `at time' $t$. In $\mathcal{QM}_M$ such a measurement `at time' $t$ is not defined. One can then ask if there exists a theory whose laws reduce to these in special situations. But then there are complications like which law should apply when and why? The decoherence approaches try to `explain' measurement using unitary evolution and the stochastic interpretation tries to `explain' unitary evolution through the measurement process. Others feel there is no need for unification and that quantum theory in its current form is perfectly fine. People belonging to this group (mostly belonging to epistemic interpretation or other `Copenhagenish' interpretations) view both unitary evolution and measurement process to be perfectly fine and that one should decide whether the unitary evolution applies or measurement process applies depending on the situation. In this case, we have two rules for updating the states of the system and it rests on the observer to decide which to apply when. We are however not convinced by this. We seek a universal theory with a unifying physical idea for the evolution of systems. Such a general theory that contains both doesn't yet exist in our opinion. The question we should be asking now is if it's possible to find some workaround for this contradiction. What we are dealing with are different physical theories. A false view of inter-theory relations has been the source of many false opinions concerning the truth of a physical theory. Thus the misconception has arisen that no theory is really `true' but that during the development of physics a later theory becoming valid makes an older theory untrue. Each physical theory will have its own application domain. What we expect from a better theory is a larger application domain. We can think of physical theories as a category with objects being physical theories. The inter-theory relations are the morphisms. What we expect is a physical theory from which we can obtain other theories either by approximation or some domain change. This would be a `universal theory'. Quantum theory in its current stage is not a universal theory. Its application domain is not good enough. For example, it cannot explain a phenomenon like gravity. What we seek is a modification of the laws of quantum mechanics that would make it universal. Based on the needs, physical theories are revised to suit us. Once in a while, the change required will be so radical that the objects of the theory themselves need to be replaced. In this case, we are fine with the objects of quantum theory. What we are interested in is a theory consisting of objects of quantum theory and a new law of evolution compatible with measurement such that the law of evolution in $\mathcal{QM}_U$ would approximate to the law of evolution in the new theory under the suitable domain of application conditions. We will denote this theory by $\mathcal{QM}$. 
+
+Physical theories do not begin their development based on some well-defined foundations. The methods of the new physical theory are initially intuitively conceived and applied. The theories usually encounter contradictions on the way, and the discovery of the cause of these contradictions lets us rectify or clarify them. The clarifications for the contradictions help us avoid the contradictions in the future. The contradictions are crucial to the development of any physical theory. It is these clarifications that develop the conceptual foundation of the said physical theory. Einstein's theory of gravity used the old classical physical objects and introduced a new physical law. In quantum mechanics, the physical objects are newly introduced but the physical laws are old received view. We believe this is where the problem comes from. 
+
+Physics does not consist of one theory. It's however a common belief that there should be one theory behind all these physical theories. We will say two theories are compatible if it's possible to go from the objects and laws of one theory to the other. We expect two theories with the same application domain to be compatible. If the application domain of one theory contains the other then it should be possible to approximate the other using the first theory. Suppose we have a class of physical theories $\{PT_\alpha\}_{\alpha\in I}$,
+$$\Ical_\alpha\to PT_\alpha\equiv MT_\alpha \longleftrightarrow A_\alpha,$$
+where $A_\alpha$ is the application domain and $MT_\alpha$ is the corresponding mathematical theory and $\Ical_\alpha$ is the set of physical ideas of the physical theory $PT_\alpha$. The physical ideas in $\Ical_\alpha$ provide us the correspondence rules associate with facts in $A_\alpha$ physical objects in $MT_\alpha$ and the laws of the theory provide morphisms between these objects. The physical ideas for different physical theories don't have to be disjoint. What we expect from a solution to the measurement problem is replace physical ideas behind $\mathcal{QM}_U$ and $\mathcal{QM}_M$ with something that's better, and gives rise to these in some sort of limit case.
+
+
+
+
+
+\clearpage
+
+\vspace{-3em}
+\ronpart{II}{Semantics Part}{}
+\vspace{-3em}
+
+\quote{\emph{What's the most resilient parasite? \\A bacteria? A virus? An intestinal worm??\\
+		\vspace{1em} An Idea! \\\vspace{1em} Resilient, highly contagious. \\
+		Once an idea has taken hold of the brain it's almost impossible to eradicate.}}{\emph{Cobb\\Inception}}
+
+\vspace{-1em}
+\noindent The complications in the interpretation of quantum theory come from the interpretation of probabilities occurring in quantum theory. We follow Adan Cabello's classification of the various interpretations of quantum mechanics \cite{Adan}. Interpretations of quantum theory can be broadly classified according to whether they view probabilities of measurement outcomes as determined or not by intrinsic properties of the observed system. 
+
+\vspace{1.75em}
+\hspace{2em}\DoBrackets\sch{-3.8ex}{6.3ex}{Interpretations}{	
+	\DoBrackets\sch{-3.3ex}{3.25ex}{Intrinsic Realism}{
+		\DoBrackets\sch{-1.3ex}{1.3ex}{$\psi$-ontic}{Many worlds, etc.\\}
+		\\
+		\DoBrackets\sch{-1.2ex}{2.3ex}{$\psi$-epistemic}{Ballentine \cite{Ballentine2}\\Spekkens \cite{Spekkens}\\Sabine Hossenfelder?\\}
+	}\\
+	\DoBrackets\sch{-2.9ex}{3.8ex}{Participatory Realism}{
+		\DoBrackets\sch{-.1ex}{1.8ex}{About Belief\\($\psi$-doxastic)}{
+			QBism \cite{Fuchs},\cite{FuchsMerminSchack},\cite{Fuchs2}\\ConSol \cite{Zwirn}
+		}\\
+		\DoBrackets\sch{-.1ex}{3.4ex}{About Knowledge}{
+			Neo-Copenhagen \cite{Brukner}\\Wheeler \cite{Wheeler},\cite{Wheeler2}\\Relational \cite{RovelliInter}\\Fuchs \& Peres \cite{FuchsPeres}}
+	}
+}
+\vspace{1.75em}
+
+\noindent Depending on the choice of interpretation of quantum states, the physical meaning of experiments is interpreted differently. So, questions like what is quantum theory about, what is the meaning of quantum entanglement, what does teleportation means, etc. depend on the choice of interpretation of quantum states.
+
+\chapter{Intrinsic Realism}
+A commonsense belief is that at any given moment any physical quantity must have a value even if we do not know what it is. The intrinsic realist interpretations are those in which probabilities of measurement outcomes are assumed to be determined by the intrinsic properties of the observed system. The notion of reality is closely linked with the values of observables in these interpretations. 
+
+\vspace{1.5em}
+\begin{center}
+	\hspace{4em}\DoBrackets\sch{-3.3ex}{3.25ex}{Intrinsic Realism}{
+		\DoBrackets\sch{-1.3ex}{1.3ex}{$\psi$-ontic}{Many worlds, etc.\\}
+		\\
+		\DoBrackets\sch{-1.2ex}{2.3ex}{$\psi$-epistemic}{Ballentine \cite{Ballentine2}\\Spekkens \cite{Spekkens}\\Sabine Hossenfelder?\\}
+	}
+\end{center}
+
+
+\vspace{1em}
+
+The intrinsic realist interpretation is $\psi$-ontic if they view the quantum state as an intrinsic property of the system. The interpretation is $\psi$-epistemic if they view the quantum state as having information about the intrinsic properties of the system. Here we will discuss stuff related to $\psi$-ontic interpretations and $\psi$-epistemic interpretations.
+
+\section{$\psi$-Ontic Interpretations}
+
+
+
+\subsection{Many Worlds Interpretation}
+
+
+
+
+
+
+
+
+\newpage
+\section{$\psi$-Epistemic Interpretations}
+This intrinsic realist view comes from our belief in classical physics. This is not problematic in classical physics since the underlying structure for observables and states fits this view perfectly. However such a view comes into lots of problems with the quantum formalism.
+
+\subsection{Hidden Variable Model}
+In statistical mechanics the states of the system are probability distribution over microstates. The microstates correspond to the dirac delta distribution over the phase space. These are similar to how states are in classical mechanics. The microstates represent the reality, and are the ontic states of the theory. These microstates are variables whose values we don't know accurately for whatever reason. This can be states as saying, `In statisical mechanics we don't exactly know the microstate' i.e., we don't have complete knowledge about the variables. The macrostates represent this known information about the microstates. This is the idea behind hidden variables, that there exist some ontic `real' state and the quantum states represent only the knowledge we know about them. For example, a coin flip has a hidden variable determining the probability of outcomes. If we know all the parameters such as force, torque, etc from the finger exerted on the coin and complete information about the system we can in theory know what the result of the experiment will be exactly. These parameters together represent the hidden variable for the coin toss experiment. 
+
+The natural question to ask now is if it is possible to find a hidden variable for the quantum case, i.e., does there exist a hidden variable knowing values of which will determine the values of the measurement. As a spoiler we would like to inform the reader that the problem comes from the non-commutativity of quantum theory.
+\subsubsection*{\textsc{Kochen-Specker Hidden Variable Model}}
+One of the very well understood systems are spin 1/2 systems that we can perform Stern-Gerlach experiments on. In these experiments we can measure the `spin' of a particle in some direction. To every direction in space we can measure if the particle is `up' in that direction. The idea is that to every pure state of this particle there corresponds a unique direction in space such that the spin is `up' in that direction. Therefore its space of pure states is isomorphic to the set of all directions in space. This space of pure states is called Bloch shere, antipodal points on the Bloch sphere correspond to states that have spin up in opposite directions. Bloch ball, whose boundary is the Bloch sphere corresponds to the space of density matrices and can be parametrized as,
+$$\rho=\left[
+\begin{matrix}
+	\frac{1}{2}+z & x-iy \\
+	x+iy & \frac{1}{2}-z 
+\end{matrix}
+\right]$$
+This can be treated as an expansion in terms of Pauli matrices, $\vec{\sigma}=(\sigma_x,\sigma_y,\sigma_z)$, as,
+$$\rho=\frac{1}{2}\mathbb{I}+\vec\tau\cdot \vec{\sigma}$$
+$\vec{\tau}$ is called the Bloch vector such that,
+$$x^2+y^2+z^2\leq 1/4.$$
+These systems are called qubits. A measurement correspond to projector projecting onto the eigenstate corresponding to the eigenvalue $\pm 1$ of spin along some direction $\vec{r}$ is given by,
+$$P_{\pm 1, \vec{r}}=\frac{1}{2}(\mathbb{I}+ (\pm 1) \vec{r}\cdot \vec{\sigma}),$$
+where $|\vec{r}|=1$. The expectation value is given by,
+$$Tr(\rho P_{\pm 1, \vec{r}})=\vec{\tau}\cdot \vec{r}.$$	
+A qubit can be represented by the following diagram where the direction of measurement is represented by the $z$ axis,
+\[
+\begin{tikzpicture}[line cap=round, line join=round, >=Triangle, scale=1]
+	\clip(-2.19,-2.49) rectangle (2.66,2.58);
+	\draw [shift={(0,0)}, lightgray, fill, fill opacity=0.1] (0,0) -- (56.7:0.4) arc (56.7:90.:0.4) -- cycle;
+	\draw [shift={(0,0)}, lightgray, fill, fill opacity=0.1] (0,0) -- (-135.7:0.4) arc (-135.7:-33.2:0.4) -- cycle;
+	\draw(0,0) circle (2cm);
+	\draw [rotate around={0.:(0.,0.)},dash pattern=on 3pt off 2pt] (0,0) ellipse (2cm and 0.9cm);
+	\draw [rotate around={0.:(0.,0.)}, blue, thick, dash pattern=on 4pt off 0pt] (0,1) ellipse (1.68cm and 0.68cm);
+	\draw [->] (0,0)-- (0.70,1.1);
+	\draw [->] (0,0) -- (0,2);
+	\draw [->] (0,0) -- (-0.81,-0.79);
+	\draw [->] (0,0) -- (-1.7,1);
+	\draw [->] (0,0) -- (2,0);
+	\draw [dotted] (0.7,1)-- (0.7,-0.46);
+	\draw [dotted] (0,0)-- (0.7,-0.46);
+	\draw (-0.08,-0.3) node[anchor=north west] {$\varphi$};
+	\draw (0.01,0.9) node[anchor=north west] {$\theta$};
+	\draw (-1.01,-0.72) node[anchor=north west] {$ {{x}}$};
+	\draw (2.07,0.3) node[anchor=north west] {$ {{y}}$};
+	\draw (-0.2,2.6) node[anchor=north west] {$ \vec{r}$};
+	%\draw (-0.7,-2) node[anchor=north west]{$-{{z}=|1\rangle}$};
+	\draw (0.5,1.75) node[anchor=north west] {$|\psi\rangle$};
+	\draw (-1.5,1.1) node[anchor=south east] {$\vec{\tau}$};
+	\scriptsize
+	\draw [fill] (0,0) circle (1.5pt);
+	\draw [fill] (0.7,1.1) circle (0.5pt);
+\end{tikzpicture}
+\]
+Kochen and Specker gave a hidden variable model for this system. The hidden variable state is given by the Bloch vector $\vec{\tau}$ of the quantum state and a unit vector $\vec{\lambda}=(\theta,\phi)$ uniformly distributed on the sphere given by,
+$$\rho(\vec\lambda)d\vec\lambda=\frac{1}{4\pi}\sin \theta d\theta d\phi$$
+The outcome is deterministically computed as follows,
+$$a(\lambda)=\text{sign} [(\vec{\tau}-\vec\lambda)\cdot \vec{m}].$$
+This term is either $+1$ or $-1$. To every $\vec\lambda$ in the cup above blue circle corresponds to a outcome $-1$. We have,
+$$p(-1,\vec{r})=\frac{1}{4\pi}\int_{0}^{\alpha} d\theta \sin\theta \int_{0}^{2\pi}d\psi,$$
+where $\alpha=\arccos(\vec{r}\cdot \vec{\tau})$. The complement area will yield $+1$. The mean value is given by,
+$$\langle s\rangle_{\vec{r}}=\int \rho(\vec\lambda)a(\vec\lambda)d\vec\lambda=\vec{r}\cdot\vec{\tau}$$
+So the Kochen-Specker hidden variable model yields same result as quantum theory. Such a hidden variable model is not possible for higher dimensions however. This is shown by the Kochen-Specker theorem.
+
+\subsubsection{{Kochen-Specker Theorem}}
+In classical physics, the states are specified as points in phase space which correspond to the values of position and momentum, the observables of the system. Such states specify the values of every observable that the system can take. The observer can know with certainty the values of all observables. The states in classical mechanics represent a state of reality. If $\Omega$ is the state space in classical physics, an observable is a map,
+$$X:\:\Omega\to \mathbb{R}.$$
+Each state would fix a value for the observables. If we denote the valuation map associated with a state $\rho$ by $\lambda_\rho$ then,
+\begin{align*}
+	\lambda_\rho:\: X\mapsto \lambda_\rho(X).
+\end{align*}
+All physical quantities possess a value in any state. If $h:\mathbb{R}\to\mathbb{R}$ is a real-valued measurable function we can construct new observables from old ones, the values of which are $h(X):=h\circ X:\Omega\to\mathbb{R}$. In such cases, we should expect the valuation of the new observable to be,
+$$\lambda_\rho(h(X))=h(\lambda_\rho(X)).$$
+The observable $h(X)$ is defined by saying that its value in any state is the result of applying the function $h$ to the value of $X$.
+
+Effects in the quantum case are projection operators. If a valuation as above exists then the valuation map associated with a state of reality should assign to each projection operator the values $1$ or $0$ based on whether the system was measured with the said property or not. Such maps are called valuation maps or valuations. If $\lambda$ is such a valuation map then $\lambda(\mathbb{I})=1$. If $A$ and $B$ are self-adjoint operators such that for some real-valued function $h$, $B=h(A)$ then, 
+$$\lambda(B)=h(\lambda(A)).$$
+Valuation maps represent non-contextual hidden variables i.e., the observables have pre-defined values and the values are independent of measurement context. A valuation map associated with a state $\rho$ is a homomorphism from the algebra of projection operators to the set $\{0,1\}$.
+$$\lambda_\rho:\mathcal{P}(\mathcal{H})\to \{0,1\}.$$
+Assuming such a valuation map exists, it must satisfy the valuation conditions $\lambda_\rho(\mathbb{I})=1$ and $\lambda_\rho(\sum_i E_i)=\sum_i \lambda_\rho(E_i).$
+Such a map satisfies the conditions of Gleason's theorem, hence must take continuous values in $[0,1]$. Since valuation maps can only take discrete values $\{0,1\}$, such a map cannot exist.
+
+\vspace{1em}
+\begin{theorem}
+	{\bfseries{\textsc{(Kochen-Specker) }}} If $\dim (\mathcal{H}) \geq 3$ then there exist no valuations. \qed
+\end{theorem}
+\vspace{1em}
+
+We used Gleason's theorem for the Kochen-Specker theorem. Since the Gleason's theorem makes lots of people uncomfortable we also give below a more elementary `pentagram' proof of the theorem. 
+\begin{center}
+	{\bfseries\textsc{Sketch of Proof}}
+\end{center}
+\begin{adjustwidth}{1em}{1em}
+	Consider a pentagram with each vertex representing an observable and any two vertices that have an edge between them commute. Denote the observables by $A_i$, $i\in 1,\cdots, 5$. If there exists a non-contextual hidden variable $\lambda$ that describes the system then to each of the five observables we assign definite values that's independent of measurement context. So, 
+	$$A_i(\lambda)=\pm 1,\:\:\:\:i=1,\dots, 5.$$ 
+	Now some algebra shows us that,
+	$$-3\leq A_1(\lambda)A_3(\lambda)+A_3(\lambda)A_5(\lambda)+A_5(\lambda)A_2(\lambda)+A_2(\lambda)A_1(\lambda)\leq 5.$$
+	So the average should also lie in the same interval,
+	$-3\leq \langle A_1(\lambda)A_3(\lambda)\rangle+\langle A_3(\lambda)A_5(\lambda)\rangle+\langle A_5(\lambda)A_2(\lambda)\rangle+\langle A_2(\lambda)A_1(\lambda) \rangle\leq 5.$ Now to arrive at a contradiction the idea is to choose a system and a set of 5 observables as above and show the expectation value of above expression lies outside the interval required by non-contextual hidden variables. See \cite{BubStairs} for the full proof. \qed
+\end{adjustwidth}
+\vspace{1em}
+\noindent The theorem asserts that it is impossible to assign values to all physical observables while simultaneously preserving the functional relations between them. It should, however, be noted that when restricted to commutative subalgebras valuations do exist. Due to the non-commutativity of quantum theory, the values of all the observables can't be known at once and any such notion has to be contextual, value of the observable depends on the experimental context. The states in quantum theories cannot be interpreted completely ontically. Non-contextual hidden variable theories are also not viable. A `state of reality' is meaningless in quantum theory. Any attempt to view the quantum state as ontic states would require serious mutilation of objects of quantum theory.
+
+\subsection{Local Realism or Bell Locality}
+The starting assumptions of quantum theory are quite general. It should be possible to model all observed phenomenon using quantum theory. Now the aim is write down a quantum theory that satisfy the constraints put forth by the theory of relativity of Einstein. The constraint of interest to us is causality. A basic characteristic of physics in the context of relativity is that causal influences on spacetime propagate in timelike or lightlike directions but not spacelike. Communication should only possible at a speed less than that of light according to relativity.
+
+Now the first step to formalize this statement is to formalize the concept of local realism. We start with Bell's definition of locality also called called Local causality or Bell locality. We want to define local realism for two experimenters say, Alice and Bob, in space-like separated regions performing two experiments $A$ and $B$ respectively. Let the values of the observables by $A_i$ and $B_j$ respectively. Bell assumed there existed some hidden variable $\lambda$ and the probability of observables are distribution over the hidden variable. The probability that the combined system in the hidden variable $\lambda$ has values $A_i$ and $B_j$ for the obseravbles $A$ and $B$ is given by,
+$$\mu(A_i,B_j|\lambda)=\mu(A_i|\lambda)\mu(B_j|\lambda)$$
+The product structure comes from the assumption that space-like separated events can't influence each other. 
+$$\mu(A_i,B_j)=\int_\lambda \mu(A_i,B_j|\lambda)\rho(\lambda)d\lambda=\int_\lambda \mu(A_i|\lambda)\mu(B_j|\lambda)\rho(\lambda)d\lambda,$$
+where $\rho(\lambda)$ tells us how the probabilities are distributed over $\lambda$. We will call this condition Bell locality. The normalization implies that,
+$\textstyle\sum_{A_i,B_j} \mu(A_i,B_j)=1.$
+Note that we are already assuming non contextual hidden variables determining the values of observables. We will denote the set of all probabilistic vectors which obey the Bell locality $\Lcal$, call this set local set. It's easy to verify that this is a convex set.
+
+\subsubsection{{Bell's Theorem}}
+Now for the case of quantum theory the expectations are given by,
+$$\mu_{\rho}(A_i,B_j)=Tr(\rho (P_{A_i}\otimes P_{B_j})),$$
+where $\rho$ is the state of the system and $P_{A_i}$ and $P_{B_j}$ are POVMs corresponding to the events associated with values $A_i$ and $B_j$ of observables $A$ and $B$ respectively with $\sum_i P_{A_i}=\mathbb{I}_A$ and $\sum_j P_{B_j}=\mathbb{I}_B$. Denote by,
+$$\mathcal{Q}=\{\mu_\rho(A_i,B_j)\:\:|\:\:\rho\in \Scal(\Hcal_A\otimes \Hcal_B)\}$$
+the set of all probability vectors. Since $Tr(\cdot (P_{A_i}\otimes P_{B_j}))$ is a continuous linear map, it maps convex bounded set to convex bounded set. Now basic topology tells us every continuous function $f:C\to \RR$ where $C$ is convex, compact will attain maxima/minima at extreme points of $C$. This is due to the fact that compact sets get mapped to compact sets, since $C$ is a convex set $f(C)$ is a connected interval, interior of $C$ is mapped to interior of $f(C)$. 
+
+Our aim is to show that there exist states that don't satisfy Bell locality, i.e., the local set is a strict subset of the quantum set.
+
+\vspace{1em}
+\begin{theorem}
+	{\bfseries \textsc{(Bell's Theorem)}} $\mathcal{L} \subsetneq \mathcal{Q}$\qed
+\end{theorem}
+\vspace{1em}
+
+Proofs of Bell's theorem usually involve constructing an entangled state that will not satisfy the Bell locality condition. These proofs don't reveal anything about what mathematical structure of quantum theory is causing the problem. One strategy is to show that states satisfying Bell locality will have certain bounds and then construct a quantum state that disobeys such a bound. We will sketch below one such proof that uses the so called CHSH inequality.
+
+\begin{center}
+	{\bfseries\textsc{Sketch of Proof}}
+\end{center}
+\begin{adjustwidth}{1em}{1em}
+	The starting point is the expectation value of the product of the outcomes of the experiment. Assume the observables $A$ and $B$ take two values say $\pm 1$. The expectation of the product of outcomes is given by,
+	$$E(a,b)=\int {A}(a,\lambda ){ {B}}(b,\lambda )\rho (\lambda )d\lambda$$
+	where $A(a,\lambda)$ is the value of the observable $A$ given the system is in the hidden variable $\lambda$ and measurement setting $a$ for the instrument and similarly for $B(b,\lambda)$. This is where we have imposed the Bell locality condition. Since possible values are $\pm 1$ we get that $|A|\leq 1$ and $|B|\leq 1$. By considering intruments with two settings $a_1,a_{-1}$ and $b_1,b_{-1}$ respectively, we get the following constraint 
+	$$|S|=|E(a_1,b_1)-E(a_1,b_{-1})+E(a_{-1},b_1)+E(a_{-1},b_{-1})|\leq 2.$$
+	for all probability vectors in $\Lcal$. The wikipedia article on CHSH inequality has sufficient details and an interested reader should read it.
+	
+	To arrive at a contradiction one considers a two qubit system. One starts with measurement basis, $|0\rangle_A, |1\rangle_A$ and $|0\rangle_B,|1\rangle_B$ and then considers Bell entangled states. The expectations will turn out to be $E(a_i,b_j)=\pm 1/\sqrt{2}$ and $|S|=2\sqrt{2}$ hence violating the CHSH bound and proving the theorem.\qed
+\end{adjustwidth}
+\vspace{1em}
+For any self-adjoint operator $A$, the norm of $A$ is the same as the spectral radius, 
+$\|A\|=\sup_{\lambda\in \sigma(A)}\{|\lambda|\}.$ So, for `binary' observables $A_i$, $B_j$ with eigenvalues $\pm 1$, consider the operator,
+$$S=A_1\otimes B_1+A_1\otimes B_2+A_2\otimes B_1-A_2\otimes B_2$$
+Each $A_i=P_{+1_{A_i}}-P_{-1_{A_i}}$, where $P_{\pm 1_{A_i}}$ is the projection corresponding to the value $\pm 1$. We get, $A_i^2=\mathbb{I}$, and similarly for $B_j$. Calculating $S^2$, we get,
+$S^2=4(\mathbb{I}\otimes \mathbb{I})+[A_1,A_2]\otimes [B_2,B_1]$. This yields,
+$$\|S^2\|\leq 8$$
+or equivalently,
+$$\|S\|\leq 2\sqrt{2}.$$
+This is called the Tsirelson bound, and Bell states attain the maximal value. 
+
+A probability distribution is said to satisfy no-signalling condition if,
+$$\mu(A_i|\lambda_k)=\textstyle\sum_{B_j}\mu(A_i, B_j\:|\:\lambda_k,\lambda_l)$$
+and similarly for $B_j$. Distributions which satisfy this no-signalling condition are denoted by $\mathcal{NS}$. The quantum set satisfies the no-signalling condition. 
+
+
+\vspace{1em}
+\begin{theorem}
+	$$\mathcal{L} \subsetneq \mathcal{Q}\subsetneq \mathcal{NS}.$$
+\end{theorem}
+\vspace{1em}
+The proof is a constructive proof like the Bell's theorem, the example construction is called the Popescu-Rorhlich box or PR box which we will describe in the sketch below.
+\begin{center}
+	{\bfseries\textsc{Sketch of Proof}}
+\end{center}
+\begin{adjustwidth}{1em}{1em}
+	Consider the distribution,
+	$\mu_{PR}(A_i, B_j|\lambda_k,\lambda_l)=\textstyle\frac{1}{2}$, $\mu_{PR}(A_i,B_i|\lambda_k,\lambda_l)=1$, $\mu_{PR}(A_i,B_{j\neq i}|1,1)=1$ where $i,j=\pm 1$, and $\lambda_{k,l}=\{0,1\}$. This satisfies the no-signalling condition, and doesn't belong to $\mathcal{Q}$. Suppose $\mu\in \mathcal{Q}$, then we have,
+	$$\mu(A_i,B_j|\lambda_k,\lambda_l)=Tr(\rho (P_{A_i}^k\otimes P_{B_j}^l))$$
+	Then the probabilities will be,
+	$\textstyle\sum_{i}\mu_{}(A_i, B_j|\lambda_k,\lambda_l)=\sum_i Tr(\rho (P_{A_i}^k\otimes P_{B_j}^l))=Tr(\rho (\mathbb{I}\otimes P_{B_j}^l))$. So, the probability doesn't depend on the choice of the setting $\lambda_k$. So, $\mathcal{Q}$ is indeed contained in $\mathcal{NS}$.\qed
+\end{adjustwidth}
+\vspace{1em}
+
+
+On an operational level, the hidden variable models cannot be distinguished from quantum mechanics. The question then is about the plausibility of such models and if they are useful as physical theories in terms of predictability, etc. If a model requires an infinite number of hidden variables to describe stuff, it's not a very good model or as Hardy calls it, such models carry ``ontological excess baggage''.
+
+Let $\Lambda$ be the set of all hidden variables, let $\mu(\lambda|\varphi)$ denote the probability distribution of the hidden variable corresponding a given state $\varphi$. Then we should have,
+$$\sum_{\lambda\in \Lambda}\mu(\lambda|\varphi)=1$$
+For normalized states we have, $|\langle \varphi|\varphi\rangle|^2=1$, so we have, $\sum_{\lambda\in \Lambda}\mu(\lambda|\varphi)\mu(\varphi|\lambda)=|\langle \varphi|\varphi\rangle|^2=1$. This can happen only if each $\mu(\varphi|\lambda)=1$. Denote by $\Lambda_\varphi$ all $\lambda\in \Lambda$ for which $\mu(\lambda|\varphi)>0$.
+
+\vspace{1em}
+\begin{theorem}
+	{\bfseries\textsc{(Hardy's Theorem)}} Any hidden variable theory that reproduces all measurements of a quantum system must have an infinite number of hidden variable states.
+\end{theorem}
+\begin{center}
+	{\bfseries\textsc{Sketch of Proof}}
+\end{center}
+\begin{adjustwidth}{1em}{1em}
+	Consider a two level system, the idea is that if $\Lambda_\varphi$ is a complete set of hidden variables then for all vectors $\varkappa$ we should have $\sum_{\lambda\in \Lambda}\mu(\lambda|\varkappa)=1$. Now consider the set of $M$ states (not orthogonal) given by,
+	$$|\varphi_i\rangle=\cos(\textstyle\frac{\pi i}{2M})|0\rangle+\sin(\textstyle\frac{\pi i}{2M})|1\rangle.$$
+	For this set we have,
+	$|\langle \varphi_i|\varphi_j\rangle|<1$ which implies $\sum_{\lambda\in \Lambda}\mu(\lambda|\varphi_i)\mu(\varphi_j|\lambda)=|\langle \varphi_i|\varphi_j\rangle|^2<1$ which can happen only if some $\mu(\varphi_i|\lambda)<1$. So $\Lambda_{\varphi_i}$ must have different elements not already in $\Lambda_\varphi$. This means there are atleast $M$ distinct subsets of $\Lambda$. Now since $M$ can be arbitrarily large we conclude that $\Lambda$ must be infinite.\qed
+\end{adjustwidth}
+
+
+
+\subsection{Ontological Model}
+A non-contextual ontological model of an operational theory is an attempt to provide a causal explanation of the operational statistics. It says that the response of the measurement is determined by the ontic state $\lambda$ of the system, while preparation procedures determine the distribution over the space of ontic states, $\Lambda$, from which $\lambda$ is sampled. An ontological model associates to each preparation $\rho$ a probability distribution $\mu_\rho$ representing the agents' knowledge of the ontic state given the preparation $\rho$. If we denote the set of such distributions by $\mathcal{D}(\lambda)$, the ontological model specifies a map, 
+$$\mu:\Scal(\Hcal)\to\mathcal{D}(\Lambda).$$
+An ontological model associates to each operational effect a response function on $\Lambda$ representing the probability assigned to the outcome $R_i$ in a measurement of $R$ if the ontic state of the system fed into the measurement device were known to be $\lambda\in \Lambda$. If we denote the set of response functions by $\mathcal{F}(\Lambda)$, the ontological model specifies a map, 
+$$\eta:\Pcal(\Hcal)\to \mathcal{F}(\Lambda).$$
+These two maps must preserve the convex structure i.e, if $\rho$ is a mixture of $\rho_1$ and $\rho_2$ with weights $\lambda$ and $1-\lambda$ then $\mu_\rho=\lambda \mu_{\rho_1}+(1-\lambda)\mu_{\rho_2}$ and similarly for effects. Furthermore, an ontological model should produce the same probability rule as the operational theory. Assuming $\Lambda $ is discrete for simplicity, we have,
+$$\mu(\rho, R_i)=\textstyle\sum_\lambda \eta_{R_i}(\lambda)\mu_\rho(\lambda).$$
+An ontological model of an operational theory is said to satisfy the generalized noncontextuality if every two operationally equivalent procedures have identical representations in the ontological model. That is to say, $\rho\sim \rho' \implies \mu_\rho=\mu_{\rho'}$ and similarly for effects. The same can be defined for GPTs and it's shown in \cite{Schmid} that they are equivalent. We will now go back to the quantum case, and the PBR theorem \cite{Pusey}.
+
+\subsubsection{{Pusey-Barret-Rudolph Theorem}}
+Suppose quantum state $\rho$ is a state of knowledge, representing the uncertainty about the real underlying ontic state of the system $\lambda$. The quantum state $\rho$ results in a physical state $\lambda$ with a probability distribution $\mu_\rho(\lambda)$. If the distributions for distinct quantum states do not overlap then the quantum state can be uniquely inferred from the physical state. If the distributions overlap, then the quantum states can be said to only contain some knowledge about the physical state. Suppose we have two quantum states $\rho_1 $ and $\rho_2$ with overlapping distributions, $\mu_{\rho_1}(\lambda)$ and $\mu_{\rho_2}(\lambda)$ then for any $\lambda$ in the overlap $\Delta$, there is a $q>0$ probability that the physical state is compatible with both quantum states. Now consider two uncorrelated systems that are prepared with two copies of the same preparation device. If the physical states $\lambda_1$ and $\lambda_2$ lie in the overlap $\Delta$, there must be some $q>0$ such that with $q^2$ probability the quantum states $\rho_1\otimes \rho_1$, $\rho_1\otimes \rho_2$, $\rho_2\otimes \rho_1$ and $\rho_2\otimes \rho_2$ will be in this physical state. The measurement on this system can be cleverly chosen such that the first outcome is orthogonal to the first state, the second outcome orthogonal to the second state, and so on.
+
+To arrive at a contradiction consider $\rho_1=|0\rangle$ and $\rho_2=|+\rangle=(|0\rangle+|1\rangle)/\sqrt 2$, and choose the measurement which projects onto the following orthogonal vectors,
+\begin{align*}
+	&(|0\rangle\otimes |1\rangle+|1\rangle\otimes|0\rangle)/\sqrt 2\\
+	&(|0\rangle\otimes|-\rangle+|-\rangle\otimes|0\rangle)/\sqrt 2\\
+	&(|+\rangle\otimes|1\rangle+|1\rangle\otimes|+\rangle)/\sqrt 2\\
+	&(|+\rangle\otimes|-\rangle+|-\rangle\otimes|+\rangle)/\sqrt 2,
+\end{align*}
+where $|-\rangle=(|0\rangle-|1\rangle)/\sqrt 2$.
+The measuring device should have been uncertain at least $q^2$ of the time about which quantum state was used in the measurement. 
+
+\vspace{1em}
+\begin{theorem}
+	{\bfseries{\textsc{(Pusey-Barret-Rudolph)}}} Quantum state interpreted as information about an objective physical state cannot reproduce the predictions of quantum theory.\qed
+\end{theorem}
+\vspace{1em}
+
+This will imply it will give an outcome that is predicted to not happen quantum mechanically. Hence, interpreting quantum states as having information about an underlying objective physical state cannot reproduce the predictions of quantum theory. Kochen-Specker theorem rejects non-contextual hidden variable theories and the PBR theorem rejects the existence of a non-contextual ontological model or the statistical interpretation. Frequentist interpretation of probabilities occurring in quantum mechanics is problematic. Kochen-Spekker theorem can be evaded by arguments of the sort `the values are never accurately known'. But we don't like to go down this path. We respect the idealization procedure of quantum theory. 
+
+The interpretation is $\psi$-epistemic if they view the quantum state as containing knowledge about an underlying reality similar to how we view states in classical statistical mechanics. The point of view given in \cite{Ballentine2} is the statistical interpretation, the quantum states represent partial knowledge about an underlying state of reality.  In classical statistical mechanics, probability distributions are introduced on the phase space. These distributions represent the likelihood of the occurrence of the values. However, if the position and momenta of all the particles are known then we have complete knowledge of the system. These states of complete knowledge of the system correspond to delta distributions which are in a one-to-one correspondence with the points in phase space. The PBR theorem is a contradiction to interpreting quantum states statistically. 
+%\subsection{Completeness of Quantum Theory}
+%\subsubsection{\textsc{Colbeck-Renner Theorem}}
+
+\chapter{Participatory Realism}
+The participatory realism interpretations mainly differ from the intrinsic realist interpretation in their treatment of probabities. They take a more subjective interpretation of probabilities associated with quantum states. Although these seems to evade many no-go theorems associated with many intrinsic realist interpretations, they come with their own problems.
+
+\vspace{1.5em}
+\begin{center}
+	\hspace{4em}
+	\DoBrackets\sch{-2.4ex}{4.8ex}{Participatory Realism}{
+		\DoBrackets\sch{-2.1ex}{2ex}{About Belief}{
+			QBism \cite{Fuchs},\cite{FuchsMerminSchack},\cite{Fuchs2}\\\vspace{1.5em}ConSol \cite{Zwirn}
+		}\\
+		\DoBrackets\sch{-.1ex}{3.4ex}{About Knowledge}{
+			Neo-Copenhagen \cite{Brukner}\\Wheeler \cite{Wheeler},\cite{Wheeler2}\\Relational \cite{RovelliInter}\\Fuchs \& Peres \cite{FuchsPeres}}
+	}
+\end{center}
+
+\vspace{1.5em}
+
+Arguably, Heisenberg was the first participatory realist. Recently, the work of Wheeler \cite{Wheeler},\cite{Wheeler2} and the start of the field of quantum information has made these interpretations trendy again, and the approaches now are more sophisticated.
+
+\section{QBism vs RQM}
+Although there are many participatory realist interpretations, the most sophisticated ones are QBism due to Chris Fuchs, R\"udiger Schack, David Mermin, and others, and relational quantum mechanics, mainly due to Carlo Rovelli. Other interesting\footnote{subjective to me ;)} participatory realist interpretations include Brukner and collaborators' `neo-copenhagen' interpretations, Clifton, Bub, Halvorson's informational interpretation \cite{CBH}. 
+
+
+
+\section{Problems with Participatory Realism}
+\subsection{Solipsism Issue}
+
+\subsection{What's an Observer?}
+
+\subsubsection{{Frauchinger-Renner Theorem}}
+	
+{\phantomsection\addcontentsline{toc}{chapter}{{Bibliography}}}
+\begin{thebibliography}{999}
+		\begin{small}			
+		\bibitem{Landsman}
+		\textsc{K Landsman,}
+		{Foundations of Quantum Theory}.
+		2017
+
+		\bibitem{Halvorson}
+		\textsc{H Halvorson,}
+		{To Be a Realist about Quantum Theory}.
+		2018
+		
+		\bibitem{Leifer}
+		\textsc{M S Leifer},
+		{What are Copenhagenish interpreta- tions and should they be perspectival?,}
+		\url{https://www.youtube.com/watch?v=C-C_K-gK6q4}, 2018
+		
+		\bibitem{Kostecki4}
+		\textsc{R P Kostecki,}
+		{Quantum theory as inductive inference}.
+		\url{http://arxiv.org/abs/1009.2423v4}, 2011
+		
+		\bibitem{Ballentine2}
+		\textsc{L Ballentine,}
+		{Statistical Interpretation of Quantum Mechanics}.
+		Rev. Mod. Phys. 42, 358, 1970
+		
+		\bibitem{FuchsPeres}
+		\textsc{C A Fuchs, A Peres,}
+		{Quantum Theory Needs No `Interpretation'}.
+		Physics Today 53, 3, 70, 2000
+		
+		\bibitem{Fuchs}
+		\textsc{C A Fuchs,}
+		{Quantum Mechanics as Quantum Information (and only a little more)}.
+		\url{https://arxiv.org/abs/quant-ph/0205039}, 2002
+		
+		\bibitem{FuchsMerminSchack}
+		\textsc{C A Fuchs, N D Mermin, R Schack,}
+		{An Introduction to QBism with an Application to the Locality of Quantum Mechanics}.
+		\url{https://arxiv.org/abs/1311.5253}, 2013
+		
+		\bibitem{Barzegar}
+		\textsc{A Barzegar},
+		{QBism Is Not So Simply Dismissed}.
+		Foundations of Physics, \url{https://doi.org/10.1007/s10701-020-00347-3}, 2020
+		
+		\bibitem{CBH}
+		\textsc{R Clifton, J Bub, H Halvorson,}
+		{Characterizing Quantum Theory in terms of Information-Theoretic Constraints}.
+		\url{https://arxiv.org/abs/quant-ph/0211089}, 2002
+		
+		\bibitem{Wheeler}
+		\textsc{J A Wheeler,}
+		{Information, physics, quantum: the search for links,}
+		Proceedings of the 3rd International Symposiumon Quantum Mechanics, 354-368, Tokyo, 1989
+		
+		\bibitem{Wheeler2}
+		\textsc{J A Wheeler,}
+		{``On recognizing `law without law,' '' Oersted Medal Response at the joint APS-AAPT Meeting, New York, 25 January 1983,}
+		American Journal of Physics 51, 398, \url{https://aapt.scitation.org/doi/10.1119/1.13224}, 1983
+		
+		\bibitem{RovelliInter}
+		\textsc{C Rovelli,}
+		{Relational Quantum Mechanics}.
+		\url{https://arxiv.org/abs/quant-ph/9609002}, 1996
+		
+		\bibitem{Rovelliagency}
+		\textsc{C Rovelli,}
+		{Agency in Physics}.
+		\url{https://arxiv.org/abs/2007.05300v2}, 2020
+		
+		\bibitem{Pienaar}
+		\textsc{J Pienaar,}
+		{QBism and Relational Quantum Mechanics compared}.
+		\url{https://arxiv.org/abs/2108.13977v1}, 2021
+		
+		\bibitem{Pienaar2}
+		\textsc{J Pienaar,}
+		{Extending the Agent in QBism}.
+		\url{https://arxiv.org/abs/2004.14847v1}, 2020
+		
+		\bibitem{Zwirn}
+		\textsc{H Zwirn,}
+		{Is the Past Determined?}.
+		Found Phys 51, 57. \url{https://doi.org/10.1007/s10701-021-00459-4}, 2021
+		
+		\bibitem{Spekkens}
+		\textsc{R Spekkens,}
+		{In defense of the epistemic view of quantum states: a toy theory}.
+		Physical Review A 75, 032110 \url{https://arxiv.org/abs/quant-ph/0401052}, 2007
+		
+		\bibitem{Colbeck}
+		\textsc{R Colbeck, R Renner,}
+		{The completeness of quantum theory for predicting measurement outcomes}.
+		\url{https://arxiv.org/abs/1208.4123}, 2012
+		
+		\bibitem{Schmid}
+		\textsc{D Schmid, J H Selby, E Wolfe, R Kunjwal, R W Spekkens,}
+		{Characterization of Noncontextuality in the Framework of Generalized Probabilistic Theories}.
+		PRX Quantum 2, 010331 \url{http://dx.doi.org/10.1103/PRXQuantum.2.010331}, 2021
+		
+		\bibitem{Pusey}
+		\textsc{M Pusey, J Barrett, T Rudolph,}
+		{On the reality of the quantum state}.
+		{\url{https://arxiv.org/abs/1111.3328}}, 2012
+		
+		
+		\bibitem{FuchsStacey}
+		\textsc{C A Fuchs, B C Stacey},
+		{QBist Quantum Mechanics: Quantum Theory as a Hero’s Handbook}.
+		{\url{https://arxiv.org/abs/1612.07308}}, 2016
+		
+		\bibitem{Fuchs3}
+		\textsc{C A Fuchs,}
+		{On Participatory Realism}.
+		{\url{https://arxiv.org/abs/1601.04360}}, 2016
+		
+		\bibitem{Adan}
+		\textsc{A Cabello,}
+		{Interpretations of Quantum Theory: A Map of Madness}.
+		{\url{http://arxiv.org/abs/1509.04711}}, 2015
+		
+		\bibitem{Bell}
+		\textsc{J Bell,}
+		{Against Measurement}.
+		Physics World, vol. 3, p. 33, 2015
+		
+		
+		\bibitem{Peres}
+		\textsc{A Peres,}
+		{Unperformed experiments have no results}.
+		American Journal of Physics, 1978
+		
+		\bibitem{Kostecki1}
+		\textsc{F Hellmann, W Kami\'nski, R P Kostecki,}
+		{Quantum collapse rules from the maximum relative entropy principle}.
+		New J. Phys. 18, 013022. \url{http://arxiv.org/abs/1407.7766}, 2016
+		
+		\bibitem{Kostecki3}
+		\textsc{R P Kostecki,}
+		{L\"uders' and quantum Jeffrey's rules as entropic projections}.
+		\url{https://arxiv.org/abs/1408.3502}, 2014
+		
+		\bibitem{Adler}
+		\textsc{S L Adler,}
+		{Why Decoherence has not Solved the Measurement Problem: A Response to P.W. Anderson}.
+		http://arXiv.org/abs/quant-ph/0112095v3, 2001
+		
+		\bibitem{ZwirnDec}
+		\textsc{H Zwirn,}
+		{The Measurement Problem: Decoherence and Convivial Solipsism}.
+		\url{https://arxiv.org/abs/1505.05029}, 2015
+		
+		\bibitem{Wigner}
+		\textsc{E P Wigner,}
+		{Remarks on the mind-body question. In Symmetries and Reflections.} 
+		pages 171–184. Indiana University Press, 1967
+		
+		\bibitem{Brukner}
+		\textsc{\^C Brukner,}
+		{On the quantum measurement problem,}
+		\url{https://arxiv.org/abs/1507.05255}, 2015
+		
+		\bibitem{FrauchingerRenner}
+		\textsc{D Frauchinger, R Renner,}
+		Quantum theory cannot consistently describe the use of itself.
+		\url{https://arxiv.org/abs/1604.07422}, 2018
+		
+		\bibitem{Pusey}
+		\textsc{M F Pusey,}
+		{An inconsistent friend}.
+		Nature Phys 14, 977–978. \url{https://doi.org/10.1038/s41567-018-0293-7}, 2018
+		
+		\bibitem{Bub}
+		\textsc{J Bub,}
+		{Understanding the Frauchiger-Renner Argument.}
+		\url{http://arxiv.org/abs/2008.08538v2}, 2020
+		
+		\bibitem{Bubsingle}
+		\textsc{J Bub,}
+		In Defense of a ``Single-World'' Interpretation of Quantum Mechanics.
+		\url{http://arxiv.org/abs/1804.03267v1}, 2018
+		
+		\bibitem{Fuchs2}
+		\textsc{J B DeBrota, C A Fuchs, R\"udiger Schack,}
+		Respecting One's Fellow: QBism's Analysis of Wigner's Friend.
+		\url{https://arxiv.org/abs/2008.03572}, 2020
+		
+		\bibitem{BlanchardFrohlichSchubnel}
+		\textsc{P Blanchard, J Fr\"ohlich, B Schubnel}
+		{A ``Garden of Forking Paths'' - the Quantum Mechanics of Histories of Events}.
+		\url{https://arxiv.org/abs/1603.09664}, 2010
+		
+		\bibitem{Griffiths}
+		\textsc{R B Griffiths,}
+		{Consistent Histories and the Interpretation of Quantum Mechanics}.
+		J. Stat. Phys. 36, 219-272, 1984
+		
+		\bibitem{Omnes}
+		\textsc{R Omnes,}
+		{Quantum Philosophy}.
+		Princeton University Press, 1999
+		\end{small}
+	\end{thebibliography}
+\end{document}
